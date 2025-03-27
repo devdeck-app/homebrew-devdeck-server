@@ -11,7 +11,7 @@ class DevdeckServer < Formula
 
   if Hardware::CPU.intel?
     url "https://github.com/devdeck-app/devdeck-server/releases/download/v0.1.0/devdeck-server_0.1.0_darwin_amd64.tar.gz"
-    sha256 "a866bc9ed9f0baac1280c1135fb853d8f7899590b33907cbd646fc0b5d9b3d94"
+    sha256 "52bd9cec37dfe132326eaecf553577008415fb9f3f534533f247ee9591e639a2"
 
     def install
       bin.install "devdeck-server"
@@ -19,7 +19,7 @@ class DevdeckServer < Formula
   end
   if Hardware::CPU.arm?
     url "https://github.com/devdeck-app/devdeck-server/releases/download/v0.1.0/devdeck-server_0.1.0_darwin_arm64.tar.gz"
-    sha256 "d097e0bad62894f9791e14378e13e6223fffc5e2e934e550fe20872f74e00f47"
+    sha256 "180e6df7e69991b674cf94b825753b0e154eee77549a46694f26e7e33decc4f3"
 
     def install
       bin.install "devdeck-server"
@@ -27,8 +27,11 @@ class DevdeckServer < Formula
   end
 
   service do
-    run [opt_bin]/"devdeck-server"
+    run [opt_bin/"devdeck-server"]
     keep_alive true
+    working_dir var
+    log_path var/"log/devdeck-server.log"
+    error_log_path var/"log/devdeck-server.err.log"
   end
 
   test do
