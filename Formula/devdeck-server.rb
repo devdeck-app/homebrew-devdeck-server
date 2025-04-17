@@ -5,21 +5,21 @@
 class DevdeckServer < Formula
   desc "DevDeck server for the DevDeck mobile app"
   homepage "https://github.com/devdeck-app/devdeck-server"
-  version "0.1.0"
+  version "0.1.1"
   license "MIT"
   depends_on :macos
 
   if Hardware::CPU.intel?
-    url "https://github.com/devdeck-app/devdeck-server/releases/download/v0.1.0/devdeck-server_0.1.0_darwin_amd64.tar.gz"
-    sha256 "52bd9cec37dfe132326eaecf553577008415fb9f3f534533f247ee9591e639a2"
+    url "https://github.com/devdeck-app/devdeck-server/releases/download/v0.1.1/devdeck-server_0.1.1_darwin_amd64.tar.gz"
+    sha256 "adcfde3f3d09728cd17db03b5584b46cd74ffc44b92e441b7a7cf52d8d2337b6"
 
     def install
       bin.install "devdeck-server"
     end
   end
   if Hardware::CPU.arm?
-    url "https://github.com/devdeck-app/devdeck-server/releases/download/v0.1.0/devdeck-server_0.1.0_darwin_arm64.tar.gz"
-    sha256 "180e6df7e69991b674cf94b825753b0e154eee77549a46694f26e7e33decc4f3"
+    url "https://github.com/devdeck-app/devdeck-server/releases/download/v0.1.1/devdeck-server_0.1.1_darwin_arm64.tar.gz"
+    sha256 "7a636f1eddcf6c81fd76949d9221a7320d4f80659158b30f69ecd64c41458868"
 
     def install
       bin.install "devdeck-server"
