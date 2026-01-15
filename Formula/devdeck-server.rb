@@ -8,6 +8,7 @@ class DevdeckServer < Formula
   version "0.1.4"
   license "MIT"
   depends_on :macos
+  depends_on "sqlite"
 
   if Hardware::CPU.intel?
     url "https://github.com/devdeck-app/devdeck-server/releases/download/v0.1.4/devdeck-server_0.1.4_darwin_amd64.tar.gz"
