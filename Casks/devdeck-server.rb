@@ -3,7 +3,7 @@ cask "devdeck-server" do
   name "devdeck-server"
   desc "DevDeck server for the DevDeck mobile app"
   homepage "https://github.com/devdeck-app/devdeck-server"
-  version "0.2.3"
+  version "0.2.4"
 
   livecheck do
     skip "Auto-generated on release."
@@ -14,16 +14,23 @@ cask "devdeck-server" do
   on_macos do
     on_intel do
       url "https://github.com/devdeck-app/devdeck-releases/releases/download/v#{version}/devdeck-server_#{version}_darwin_amd64.tar.gz"
-      sha256 "3ea5109601a8a3aa952aee5186197b44c9c338200ed1bd2ca2dbcf0742550802"
+      sha256 "9b567a64ee5b8b6b77d10ce4848860cb27b4039d5348a1fd2640e760db26ff15"
     end
     on_arm do
       url "https://github.com/devdeck-app/devdeck-releases/releases/download/v#{version}/devdeck-server_#{version}_darwin_arm64.tar.gz"
-      sha256 "59f4ace86c974443003432da6b8b31d806dcf918ca0408c34546a6ea132b43d6"
+      sha256 "1894fcf5976bc37db6dc01b47c6c794f819b5d6c0d8682eeb1fcabb0c02d23a4"
     end
   end
 
   postflight do
     system_command "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "#{staged_path}/devdeck-server"]
+    system_command "/bin/mkdir", args: ["-p", "#{Dir.home}/.config/devdeck/bin"]
+    system_command "/bin/cp", args: ["#{staged_path}/bin/frontmost", "#{Dir.home}/.config/devdeck/bin/frontmost"]
+    system_command "/bin/chmod", args: ["+x", "#{Dir.home}/.config/devdeck/bin/frontmost"]
+  end
+
+  uninstall_postflight do
+    system_command "/bin/rm", args: ["-f", "#{Dir.home}/.config/devdeck/bin/frontmost"]
   end
 
   caveats do
@@ -32,6 +39,9 @@ cask "devdeck-server" do
     ""
     "To run as a background service, create a launchd plist or use:"
     "  nohup devdeck-server &"
+    ""
+    "Context-aware deck switching requires the frontmost detector binary,"
+    "which has been installed to ~/.config/devdeck/bin/frontmost"
   end
 
   # No zap stanza required
