@@ -3,7 +3,7 @@ cask "devdeck-server" do
   name "devdeck-server"
   desc "DevDeck server for the DevDeck mobile app"
   homepage "https://github.com/devdeck-app/devdeck-server"
-  version "0.3.5"
+  version "0.3.6"
 
   livecheck do
     skip "Auto-generated on release."
@@ -14,11 +14,11 @@ cask "devdeck-server" do
   on_macos do
     on_intel do
       url "https://github.com/devdeck-app/devdeck-releases/releases/download/v#{version}/devdeck-server_#{version}_darwin_amd64.tar.gz"
-      sha256 "64938716aafed81e4c4ccafdea01c95d7c9a20a73a89a3719bb15e3dd4a4d3b1"
+      sha256 "12b1daeb347c781be9644a41fff2aec469117e39d6964d8a22e2b9023bc58ae7"
     end
     on_arm do
       url "https://github.com/devdeck-app/devdeck-releases/releases/download/v#{version}/devdeck-server_#{version}_darwin_arm64.tar.gz"
-      sha256 "a220ccbe03fc259a0a5e756ef832db9a944678258f3e5400b884e644c22c5c25"
+      sha256 "84b57b1abd201b4d82756b6be43b52b783f48767529cb1435a37b73962d2994e"
     end
   end
 
