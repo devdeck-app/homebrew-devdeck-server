@@ -3,7 +3,7 @@ cask "devdeck-server" do
   name "devdeck-server"
   desc "DevDeck server for the DevDeck mobile app"
   homepage "https://github.com/devdeck-app/devdeck-server"
-  version "0.4.0"
+  version "0.4.1"
 
   livecheck do
     skip "Auto-generated on release."
@@ -14,11 +14,11 @@ cask "devdeck-server" do
   on_macos do
     on_intel do
       url "https://github.com/devdeck-app/devdeck-releases/releases/download/v#{version}/devdeck-server_#{version}_darwin_amd64.tar.gz"
-      sha256 "dfa0eaf37a11891885f73ea72186768e2c91f5a46a5d8406e1bf962bffba4e82"
+      sha256 "f23b7e62efc805ce6ea52aee60d43454fe078fbd3e11394fc5b47ad7637dc66c"
     end
     on_arm do
       url "https://github.com/devdeck-app/devdeck-releases/releases/download/v#{version}/devdeck-server_#{version}_darwin_arm64.tar.gz"
-      sha256 "83f073ab3d3f835375acbe7d29ae76548578b1e87bc767a5fc7edf65a1734c25"
+      sha256 "09d3cad4a58fd68594648afca76942b6ae32caebabc44eb6b8380d926e5c0b8e"
     end
   end
 
@@ -26,10 +26,13 @@ cask "devdeck-server" do
     system_command "/bin/mkdir", args: ["-p", "#{Dir.home}/.config/devdeck/bin"]
     system_command "/bin/cp", args: ["#{staged_path}/bin/frontmost", "#{Dir.home}/.config/devdeck/bin/frontmost"]
     system_command "/bin/chmod", args: ["+x", "#{Dir.home}/.config/devdeck/bin/frontmost"]
+    system_command "/bin/cp", args: ["#{staged_path}/bin/menuctl", "#{Dir.home}/.config/devdeck/bin/menuctl"]
+    system_command "/bin/chmod", args: ["+x", "#{Dir.home}/.config/devdeck/bin/menuctl"]
   end
 
   uninstall_postflight do
     system_command "/bin/rm", args: ["-f", "#{Dir.home}/.config/devdeck/bin/frontmost"]
+    system_command "/bin/rm", args: ["-f", "#{Dir.home}/.config/devdeck/bin/menuctl"]
   end
 
   caveats do
@@ -41,6 +44,9 @@ cask "devdeck-server" do
     ""
     "Context-aware deck switching requires the frontmost detector binary,"
     "which has been installed to ~/.config/devdeck/bin/frontmost"
+    ""
+    "AI-accurate shortcut generation requires the menuctl binary,"
+    "which has been installed to ~/.config/devdeck/bin/menuctl"
   end
 
   # No zap stanza required
